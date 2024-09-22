@@ -4,18 +4,19 @@ import com.ed.webcompany.technico.enumerations.PropertyType;
 import com.ed.webcompany.technico.models.Property;
 import com.ed.webcompany.technico.models.PropertyOwner;
 import com.ed.webcompany.technico.repositories.PropertyRepository;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequestScoped
 public class PropertyServiceImpl implements PropertyService {
 
+    
+    @Inject
     private PropertyRepository propertyRepository;
-
-    public PropertyServiceImpl(PropertyRepository propertyRepository) {
-        this.propertyRepository = propertyRepository;
-    }
 
     @Override
     public Property createProperty(String e9, String address, int yearOfConstruction, PropertyType typeOfProperty, PropertyOwner owner) {

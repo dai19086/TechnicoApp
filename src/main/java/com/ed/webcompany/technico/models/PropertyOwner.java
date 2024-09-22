@@ -1,5 +1,6 @@
 package com.ed.webcompany.technico.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,8 +34,10 @@ public class PropertyOwner {
     private String name;
     private String surname;
     private String address;
-    private long phoneNumber;
+    private String phoneNumber;
+    @Column(unique = true)
     private String email;
+    @Column(unique = true)
     private String username;
     private String password;
 
@@ -42,6 +45,7 @@ public class PropertyOwner {
      * A list of properties owned by the PropertyOwner. This is a one-to-many
      * relationship, where each property is associated with one owner.
      */
+    @JsonIgnore
     @OneToMany(mappedBy = "propertyOwner")
     List<Property> properties;
 

@@ -1,21 +1,22 @@
 package com.ed.webcompany.technico.repositories;
 
 import com.ed.webcompany.technico.models.Property;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@RequestScoped
 public class PropertyRepository implements Repository<Property> {
 
+    @PersistenceContext(unitName = "Persistence")
     private EntityManager entityManager;
 
-    public PropertyRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
-
     @Override
+    @Transactional
     public Optional<Property> findById(Long id) {
         try {
             entityManager.getTransaction().begin();
@@ -28,6 +29,7 @@ public class PropertyRepository implements Repository<Property> {
     }
 
     @Override
+    @Transactional
     public List<Property> findAll() {
         TypedQuery<Property> query = entityManager.createQuery("from " + getEntityClassName(), getEntityClass());
         return query.getResultList();
@@ -56,14 +58,13 @@ public class PropertyRepository implements Repository<Property> {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(Long id) {
         Property persistentInstance = entityManager.find(getEntityClass(), id);
         if (persistentInstance != null) {
 
             try {
-                entityManager.getTransaction().begin();
                 entityManager.remove(persistentInstance);
-                entityManager.getTransaction().commit();
             } catch (Exception e) {
                 System.out.println("ERROR!!! Could NOT delete this item...");
                 return false;

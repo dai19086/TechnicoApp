@@ -6,8 +6,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.NotFoundException;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * The OwnerRepository class provides CRUD operations for PropertyOwner
@@ -62,13 +65,17 @@ public class OwnerRepository implements Repository<PropertyOwner> {
     @Override
     @Transactional
     public Long save(PropertyOwner owner) {
-        if (owner.getOwnerId() == null) {
-            entityManager.persist(owner);
-        } else {
-            entityManager.merge(owner);
+        try {
+            if (owner.getOwnerId() == null) {
+                entityManager.persist(owner);
+            } else {
+                entityManager.merge(owner);
+            }
+            return owner.getOwnerId();
+        } catch (Exception e) {
+            Logger.getLogger(PropertyOwner.class.getName()).log(Level.SEVERE, "Unable to save the data due to an error", e);
+            return -1L;
         }
-
-        return owner.getOwnerId();
     }
 
     /**
@@ -84,13 +91,11 @@ public class OwnerRepository implements Repository<PropertyOwner> {
         PropertyOwner propertyOwner = entityManager.find(PropertyOwner.class, id);
         if (propertyOwner != null) {
             try {
-                entityManager.getTransaction().begin();
                 entityManager.remove(propertyOwner);
-                entityManager.getTransaction().commit();
+                return true;
             } catch (Exception e) {
                 System.out.println("An exception occured");
             }
-            return true;
 
         }
         return false;
@@ -102,8 +107,9 @@ public class OwnerRepository implements Repository<PropertyOwner> {
      * @param email The email address of the PropertyOwner to be retrieved.
      * @return The PropertyOwner with the specified email address.
      */
-    public PropertyOwner findOwnerByEmail(String email) {
-        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("from PropertyOwner where email =: data", PropertyOwner.class);
+    @Transactional
+    public PropertyOwner findOwnerByEmail(String email) throws NotFoundException{
+        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.email = :data", PropertyOwner.class);
         typedQuery.setParameter("data", email);
         return typedQuery.getSingleResult();
     }
@@ -114,9 +120,23 @@ public class OwnerRepository implements Repository<PropertyOwner> {
      * @param vat The VAT number of the PropertyOwner to be retrieved.
      * @return The PropertyOwner with the specified VAT number.
      */
-    public PropertyOwner findOwnerByVat(String vat) {
-        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("from PropertyOwner where vat =: data", PropertyOwner.class);
+    @Transactional
+    public PropertyOwner findOwnerByVat(String vat) throws NotFoundException{
+        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.vatNumber = :data", PropertyOwner.class);
         typedQuery.setParameter("data", vat);
+        return typedQuery.getSingleResult();
+    }
+
+    /**
+     * Finds a PropertyOwner by their username.
+     *
+     * @param username The username of the PropertyOwner to be retrieved.
+     * @return The PropertyOwner with the specified username.
+     */
+    @Transactional
+    public PropertyOwner findOwnerByUsername(String username) throws NotFoundException{
+        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.username = :data", PropertyOwner.class);
+        typedQuery.setParameter("data", username);
         return typedQuery.getSingleResult();
     }
 }

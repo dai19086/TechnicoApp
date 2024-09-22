@@ -1,8 +1,11 @@
 package com.ed.webcompany.technico.models;
 
 import com.ed.webcompany.technico.enumerations.PropertyType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -35,12 +38,14 @@ public class Property {
 
     private int yearOfConstruction;
 
+    @Enumerated(EnumType.STRING)
     private PropertyType typeOfProperty;
 
     @ManyToOne
     @JoinColumn(referencedColumnName = "ownerId")
     private PropertyOwner propertyOwner;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "property")
     private List<PropertyRepair> repairs;
 

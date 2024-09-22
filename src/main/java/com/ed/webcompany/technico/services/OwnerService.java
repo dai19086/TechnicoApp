@@ -14,7 +14,7 @@ import java.util.List;
  */
 public interface OwnerService {
 
-    PropertyOwner createOwner(String vatNumber, String name, String surname, String address, long phoneNumber,
+    PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
             String email, String username, String password);
 
     Long saveOwner(PropertyOwner propertyowner);
@@ -22,6 +22,8 @@ public interface OwnerService {
     PropertyOwner searchOwnerByEmail(String email) throws OwnerException;
 
     PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException;
+    
+    PropertyOwner searchOwnerByUsername(String username) throws OwnerException;
 
     PropertyOwner searchOwnerById(String id) throws OwnerException, NumberFormatException;
 
@@ -29,9 +31,9 @@ public interface OwnerService {
 
     List<PropertyOwner> getAllOwners();
 
-    void updateOwnerEmail(Long ownerId, String newEmail) throws OwnerException;
-
-    void updateOwnerPassword(Long ownerId, String newPassword) throws OwnerException;
-
-    void updateOwnerAddress(Long ownerId, String newAddress) throws OwnerException;
+//    void updateOwnerEmail(Long ownerId, String newEmail) throws OwnerException;
+//
+//    void updateOwnerPassword(Long ownerId, String newPassword) throws OwnerException;
+//
+//    void updateOwnerAddress(Long ownerId, String newAddress) throws OwnerException;
 }

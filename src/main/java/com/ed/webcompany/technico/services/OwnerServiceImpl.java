@@ -37,7 +37,7 @@ public class OwnerServiceImpl implements OwnerService {
      * @return The created PropertyOwner.
      */
     @Override
-    public PropertyOwner createOwner(String vatNumber, String name, String surname, String address, long phoneNumber,
+    public PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
             String email, String username, String password) {
 
         return PropertyOwner.builder()
@@ -73,7 +73,7 @@ public class OwnerServiceImpl implements OwnerService {
     public List<PropertyOwner> getAllOwners() {
         return ownerRepository.findAll();
     }
-
+    
     /**
      * Searches for a PropertyOwner by their email address.
      *
@@ -104,6 +104,21 @@ public class OwnerServiceImpl implements OwnerService {
             throw new OwnerException("Invalid vat number");
         }
         return ownerRepository.findOwnerByVat(vatNumber);
+    }
+    
+    /**
+     * Searches for a PropertyOwner by their username.
+     *
+     * @param username The username of the PropertyOwner to be searched.
+     * @return The PropertyOwner associated with the specified username.
+     * @throws OwnerException If the username is invalid.
+     */
+    @Override
+    public PropertyOwner searchOwnerByUsername(String username) throws OwnerException {
+        if (username == null) {
+            throw new OwnerException("Invalid username");
+        }
+        return ownerRepository.findOwnerByUsername(username);
     }
 
     /**
@@ -146,68 +161,68 @@ public class OwnerServiceImpl implements OwnerService {
         return ownerRepository.deleteById(id);
     }
 
-    /**
-     * Updates the address of an existing PropertyOwner.
-     *
-     * @param ownerId The ID of the PropertyOwner whose address is to be
-     * updated.
-     * @param newAddress The new address to be set for the PropertyOwner.
-     * @throws OwnerException If the owner cannot be found or the new address is
-     * invalid.
-     */
-    @Override
-    public void updateOwnerAddress(Long ownerId, String newAddress) throws OwnerException {
-        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
-        if (optionalOwner.isPresent()) {
-            PropertyOwner owner = optionalOwner.get();
-            owner.setAddress(newAddress);
-            ownerRepository.save(owner);
-        } else {
-            throw new OwnerException("Owner not found");
-        }
-    }
+//    /**
+//     * Updates the address of an existing PropertyOwner.
+//     *
+//     * @param ownerId The ID of the PropertyOwner whose address is to be
+//     * updated.
+//     * @param newAddress The new address to be set for the PropertyOwner.
+//     * @throws OwnerException If the owner cannot be found or the new address is
+//     * invalid.
+//     */
+//    @Override
+//    public void updateOwnerAddress(Long ownerId, String newAddress) throws OwnerException {
+//        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
+//        if (optionalOwner.isPresent()) {
+//            PropertyOwner owner = optionalOwner.get();
+//            owner.setAddress(newAddress);
+//            ownerRepository.save(owner);
+//        } else {
+//            throw new OwnerException("Owner not found");
+//        }
+//    }
 
-    /**
-     * Updates the email address of an existing PropertyOwner.
-     *
-     * @param ownerId The ID of the PropertyOwner whose email is to be updated.
-     * @param newEmail The new email address to be set for the PropertyOwner.
-     * @throws OwnerException If the owner cannot be found or the new email is
-     * invalid.
-     */
-    @Override
-    public void updateOwnerEmail(Long ownerId, String newEmail) throws OwnerException {
-        if (newEmail == null || !newEmail.contains("@")) {
-            throw new OwnerException("Invalid email");
-        }
-        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
-        if (optionalOwner.isPresent()) {
-            PropertyOwner owner = optionalOwner.get();
-            owner.setEmail(newEmail);
-            ownerRepository.save(owner);
-        } else {
-            throw new OwnerException("Owner not found");
-        }
-    }
+//    /**
+//     * Updates the email address of an existing PropertyOwner.
+//     *
+//     * @param ownerId The ID of the PropertyOwner whose email is to be updated.
+//     * @param newEmail The new email address to be set for the PropertyOwner.
+//     * @throws OwnerException If the owner cannot be found or the new email is
+//     * invalid.
+//     */
+//    @Override
+//    public void updateOwnerEmail(Long ownerId, String newEmail) throws OwnerException {
+//        if (newEmail == null || !newEmail.contains("@")) {
+//            throw new OwnerException("Invalid email");
+//        }
+//        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
+//        if (optionalOwner.isPresent()) {
+//            PropertyOwner owner = optionalOwner.get();
+//            owner.setEmail(newEmail);
+//            ownerRepository.save(owner);
+//        } else {
+//            throw new OwnerException("Owner not found");
+//        }
+//    }
 
-    /**
-     * Updates the password of an existing PropertyOwner.
-     *
-     * @param ownerId The ID of the PropertyOwner whose password is to be
-     * updated.
-     * @param newPassword The new password to be set for the PropertyOwner.
-     * @throws OwnerException If the owner cannot be found or the new password
-     * is invalid.
-     */
-    @Override
-    public void updateOwnerPassword(Long ownerId, String newPassword) throws OwnerException {
-        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
-        if (optionalOwner.isPresent()) {
-            PropertyOwner owner = optionalOwner.get();
-            owner.setPassword(newPassword);
-            ownerRepository.save(owner);
-        } else {
-            throw new OwnerException("Owner not found");
-        }
-    }
+//    /**
+//     * Updates the password of an existing PropertyOwner.
+//     *
+//     * @param ownerId The ID of the PropertyOwner whose password is to be
+//     * updated.
+//     * @param newPassword The new password to be set for the PropertyOwner.
+//     * @throws OwnerException If the owner cannot be found or the new password
+//     * is invalid.
+//     */
+//    @Override
+//    public void updateOwnerPassword(Long ownerId, String newPassword) throws OwnerException {
+//        Optional<PropertyOwner> optionalOwner = ownerRepository.findById(ownerId);
+//        if (optionalOwner.isPresent()) {
+//            PropertyOwner owner = optionalOwner.get();
+//            owner.setPassword(newPassword);
+//            ownerRepository.save(owner);
+//        } else {
+//            throw new OwnerException("Owner not found");
+//        }
+//    }
 }
