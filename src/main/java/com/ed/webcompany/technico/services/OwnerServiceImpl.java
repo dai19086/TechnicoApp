@@ -73,7 +73,7 @@ public class OwnerServiceImpl implements OwnerService {
     public List<PropertyOwner> getAllOwners() {
         return ownerRepository.findAll();
     }
-    
+
     /**
      * Searches for a PropertyOwner by their email address.
      *
@@ -83,7 +83,7 @@ public class OwnerServiceImpl implements OwnerService {
      * that email.
      */
     @Override
-    public PropertyOwner searchOwnerByEmail(String email) throws OwnerException {
+    public PropertyOwner searchOwnerByEmail(String email) throws OwnerException{
         if (email == null || !email.contains("@")) {
             throw new OwnerException("Invalid email");
         }
@@ -99,7 +99,7 @@ public class OwnerServiceImpl implements OwnerService {
      * with that VAT number.
      */
     @Override
-    public PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException {
+    public PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException{
         if (vatNumber == null) {
             throw new OwnerException("Invalid vat number");
         }
@@ -114,7 +114,7 @@ public class OwnerServiceImpl implements OwnerService {
      * @throws OwnerException If the username is invalid.
      */
     @Override
-    public PropertyOwner searchOwnerByUsername(String username) throws OwnerException {
+    public PropertyOwner searchOwnerByUsername(String username) throws OwnerException{
         if (username == null) {
             throw new OwnerException("Invalid username");
         }
@@ -131,7 +131,7 @@ public class OwnerServiceImpl implements OwnerService {
      * @throws NumberFormatException If the ID cannot be parsed to a Long.
      */
     @Override
-    public PropertyOwner searchOwnerById(String id) throws OwnerException, NumberFormatException {
+    public PropertyOwner searchOwnerById(String id) throws OwnerException{
         if (id == null) {
             throw new OwnerException("Invalid id");
         }

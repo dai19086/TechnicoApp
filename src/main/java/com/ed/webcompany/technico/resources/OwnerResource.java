@@ -40,7 +40,7 @@ public class OwnerResource {
     public PropertyOwner getOwnerByVat(@PathParam("vat") String vat) {
         try {
             return ownerService.searchOwnerByVat(vat);
-        } catch (OwnerException | NotFoundException e) {
+        } catch (Exception e) {
             PropertyOwner owner = new PropertyOwner();
             owner.setName(e.getMessage());
             owner.setOwnerId(-1L);
@@ -54,7 +54,7 @@ public class OwnerResource {
     public PropertyOwner getOwnerByUsername(@PathParam("username") String username) {
         try {
             return ownerService.searchOwnerByUsername(username);
-        } catch (OwnerException | NotFoundException e) {
+        } catch (Exception e) {
             PropertyOwner owner = new PropertyOwner();
             owner.setName(e.getMessage());
             owner.setOwnerId(-1L);
@@ -68,7 +68,7 @@ public class OwnerResource {
     public PropertyOwner getOwnerByEmail(@PathParam("email") String email) {
         try {
             return ownerService.searchOwnerByEmail(email);
-        } catch (OwnerException | NotFoundException e) {
+        } catch (Exception e) {
             PropertyOwner owner = new PropertyOwner();
             owner.setName(e.getMessage());
             owner.setOwnerId(-1L);
