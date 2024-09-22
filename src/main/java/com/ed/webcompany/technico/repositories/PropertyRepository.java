@@ -8,6 +8,8 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RequestScoped
 public class PropertyRepository implements Repository<Property> {
@@ -48,13 +50,18 @@ public class PropertyRepository implements Repository<Property> {
     @Override
     @Transactional
     public Long save(Property property) {
-        if (property.getPropertyId() == null) {
-            entityManager.persist(property);
-        } else {
-            entityManager.merge(property);
-        }
+        try {
+            if (property.getPropertyId() == null) {
+                entityManager.persist(property);
+            } else {
+                entityManager.merge(property);
+            }
 
-        return property.getPropertyId();
+            return property.getPropertyId();
+        }catch (Exception e) {
+            Logger.getLogger(Property.class.getName()).log(Level.SEVERE, "Unable to save the data due to an error", e);
+            return -1L;
+        }
     }
 
     @Override

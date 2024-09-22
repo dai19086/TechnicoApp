@@ -50,7 +50,7 @@ public class PropertyResource {
         return propertyService.saveProperty(property);
     }
 
-    @Path("deleteProperty/{ownerId}")
+    @Path("deleteProperty/{propertyId}")
     @DELETE
     @Consumes("application/json")
     @Produces("application/json")
