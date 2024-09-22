@@ -34,8 +34,8 @@ public class PropertyRepair {
     private RepairType typeOfRepair;
     
     private String shortDescription;
-    private String submissionDate;
     private String workDescription;
+    private String submissionDate;
     private String proposedStartDate;
     private String proposedEndDate;
     private double proposedCost;

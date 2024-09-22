@@ -5,17 +5,16 @@ import com.ed.webcompany.technico.enumerations.RepairType;
 import com.ed.webcompany.technico.models.Property;
 import com.ed.webcompany.technico.models.PropertyRepair;
 import com.ed.webcompany.technico.repositories.PropertyRepairRepository;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
+@RequestScoped
 public class PropertyRepairServiceImpl implements PropertyRepairService {
 
-    private final PropertyRepairRepository propertyRepairRepository;
-
-    public PropertyRepairServiceImpl(PropertyRepairRepository propertyRepairRepository) {
-        this.propertyRepairRepository = propertyRepairRepository;
-    }
+    @Inject
+    private PropertyRepairRepository propertyRepairRepository;
 
     @Override
     public PropertyRepair createPropertyRepair(Property property, RepairType typeOfRepair, String submissionDate,
@@ -49,8 +48,8 @@ public class PropertyRepairServiceImpl implements PropertyRepairService {
     }
 
     @Override
-    public void deletePropertyRepair(Long id) {
-        propertyRepairRepository.deleteById(id);
+    public boolean deletePropertyRepair(Long id) {
+        return propertyRepairRepository.deleteById(id);
     }
 
     @Override

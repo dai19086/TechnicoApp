@@ -20,7 +20,7 @@ public interface PropertyRepairService {
 
     List<PropertyRepair> getUnansweredOwnerRepairs(String ownerVAT);
 
-    void deletePropertyRepair(Long id);
+    boolean deletePropertyRepair(Long id);
 
     List<PropertyRepair> searchPropertyRepairsByDateRange(String startDate, String endDate);
 

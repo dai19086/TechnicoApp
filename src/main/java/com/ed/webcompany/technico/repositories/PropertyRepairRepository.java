@@ -2,21 +2,22 @@ package com.ed.webcompany.technico.repositories;
 
 import com.ed.webcompany.technico.exceptions.PropertyRepairException;
 import com.ed.webcompany.technico.models.PropertyRepair;
+import jakarta.enterprise.context.RequestScoped;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@RequestScoped
 public class PropertyRepairRepository implements Repository<PropertyRepair> {
 
-    private final EntityManager entityManager;
-
-    public PropertyRepairRepository(EntityManager entityManager) {
-        this.entityManager = entityManager;
-    }
+    @PersistenceContext(unitName = "Persistence")
+    private EntityManager entityManager;
 
     @Override
+    @Transactional
     public Optional<PropertyRepair> findById(Long id) {
         try {
             entityManager.getTransaction().begin();
@@ -30,6 +31,7 @@ public class PropertyRepairRepository implements Repository<PropertyRepair> {
     }
 
     @Override
+    @Transactional
     public List<PropertyRepair> findAll() {
         try {
             TypedQuery<PropertyRepair> query = entityManager.createQuery("from " + getEntityClassName(), getEntityClass());
@@ -52,6 +54,7 @@ public class PropertyRepairRepository implements Repository<PropertyRepair> {
     }
 
     @Override
+    @Transactional
     public boolean deleteById(Long id) {
         PropertyRepair persistentInstance = entityManager.find(getEntityClass(), id);
         if (persistentInstance != null) {
