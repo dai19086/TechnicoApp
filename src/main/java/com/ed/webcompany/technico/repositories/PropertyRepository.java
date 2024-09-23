@@ -72,11 +72,10 @@ public class PropertyRepository implements Repository<Property> {
 
             try {
                 entityManager.remove(persistentInstance);
+                return true;
             } catch (Exception e) {
-                System.out.println("ERROR!!! Could NOT delete this item...");
-                return false;
+                Logger.getLogger(Property.class.getName()).log(Level.SEVERE, "Unable to delete the data due to an error", e);
             }
-            return true;
         }
         return false;
     }

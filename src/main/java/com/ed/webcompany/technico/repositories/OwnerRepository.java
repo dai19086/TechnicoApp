@@ -94,7 +94,7 @@ public class OwnerRepository implements Repository<PropertyOwner> {
                 entityManager.remove(propertyOwner);
                 return true;
             } catch (Exception e) {
-                System.out.println("An exception occured");
+                Logger.getLogger(PropertyOwner.class.getName()).log(Level.SEVERE, "Unable to delete the data due to an error", e);
             }
 
         }
@@ -108,7 +108,7 @@ public class OwnerRepository implements Repository<PropertyOwner> {
      * @return The PropertyOwner with the specified email address.
      */
     @Transactional
-    public PropertyOwner findOwnerByEmail(String email) throws NotFoundException{
+    public PropertyOwner findOwnerByEmail(String email) throws NotFoundException {
         TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.email = :data", PropertyOwner.class);
         typedQuery.setParameter("data", email);
         return typedQuery.getSingleResult();
@@ -121,7 +121,7 @@ public class OwnerRepository implements Repository<PropertyOwner> {
      * @return The PropertyOwner with the specified VAT number.
      */
     @Transactional
-    public PropertyOwner findOwnerByVat(String vat) throws NotFoundException{
+    public PropertyOwner findOwnerByVat(String vat) throws NotFoundException {
         TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.vatNumber = :data", PropertyOwner.class);
         typedQuery.setParameter("data", vat);
         return typedQuery.getSingleResult();
@@ -134,7 +134,7 @@ public class OwnerRepository implements Repository<PropertyOwner> {
      * @return The PropertyOwner with the specified username.
      */
     @Transactional
-    public PropertyOwner findOwnerByUsername(String username) throws NotFoundException{
+    public PropertyOwner findOwnerByUsername(String username) throws NotFoundException {
         TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.username = :data", PropertyOwner.class);
         typedQuery.setParameter("data", username);
         return typedQuery.getSingleResult();

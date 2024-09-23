@@ -9,6 +9,8 @@ import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 @RequestScoped
 public class PropertyRepairRepository implements Repository<PropertyRepair> {
@@ -44,13 +46,18 @@ public class PropertyRepairRepository implements Repository<PropertyRepair> {
     @Override
     @Transactional
     public Long save(PropertyRepair repair) {
-        if (repair.getRepairId()== null) {
-            entityManager.persist(repair);
-        } else {
-            entityManager.merge(repair);
+        try {
+            if (repair.getRepairId() == null) {
+                entityManager.persist(repair);
+            } else {
+                entityManager.merge(repair);
+            }
+            return repair.getRepairId();
+        } catch (Exception e) {
+            Logger.getLogger(PropertyRepair.class.getName()).log(Level.SEVERE, "Unable to save the data due to an error", e);
+            return -1L;
         }
-        
-        return repair.getRepairId();
+
     }
 
     @Override
@@ -60,15 +67,11 @@ public class PropertyRepairRepository implements Repository<PropertyRepair> {
         if (persistentInstance != null) {
 
             try {
-                entityManager.getTransaction().begin();
                 entityManager.remove(persistentInstance);
-                entityManager.getTransaction().commit();
+                return true;
             } catch (Exception e) {
-                entityManager.getTransaction().rollback();
-                throw new PropertyRepairException("Failed to delete PropertyRepair with id: " + id, e);
-                //return false;
+                Logger.getLogger(PropertyRepair.class.getName()).log(Level.SEVERE, "Unable to delete the data due to an error", e);
             }
-            //return true;
         }
         return false;
     }
