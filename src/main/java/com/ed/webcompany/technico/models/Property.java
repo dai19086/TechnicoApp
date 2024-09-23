@@ -2,6 +2,7 @@ package com.ed.webcompany.technico.models;
 
 import com.ed.webcompany.technico.enumerations.PropertyType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -46,7 +47,7 @@ public class Property {
     private PropertyOwner propertyOwner;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "property")
+    @OneToMany(mappedBy = "property", cascade = CascadeType.REMOVE)
     private List<PropertyRepair> repairs;
 
     @Override

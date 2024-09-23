@@ -1,6 +1,7 @@
 package com.ed.webcompany.technico.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -44,7 +45,7 @@ public class PropertyOwner {
      * relationship, where each property is associated with one owner.
      */
     @JsonIgnore
-    @OneToMany(mappedBy = "propertyOwner")
+    @OneToMany(mappedBy = "propertyOwner", cascade = CascadeType.REMOVE)
     List<Property> properties;
 
 }

@@ -2,6 +2,7 @@ package com.ed.webcompany.technico.models;
 
 import com.ed.webcompany.technico.enumerations.RepairStatus;
 import com.ed.webcompany.technico.enumerations.RepairType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
