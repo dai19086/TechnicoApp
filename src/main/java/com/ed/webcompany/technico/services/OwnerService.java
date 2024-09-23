@@ -15,15 +15,13 @@ import java.util.List;
 public interface OwnerService {
 
     PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
-            String email, String username, String password);
+            String email, String password);
 
     Long saveOwner(PropertyOwner propertyowner);
 
     PropertyOwner searchOwnerByEmail(String email) throws OwnerException;
 
     PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException;
-    
-    PropertyOwner searchOwnerByUsername(String username) throws OwnerException;
 
     PropertyOwner searchOwnerById(String id) throws OwnerException, NumberFormatException;
 

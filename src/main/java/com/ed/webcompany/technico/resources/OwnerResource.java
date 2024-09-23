@@ -47,20 +47,6 @@ public class OwnerResource {
             return owner;
         }
     }
-
-    @Path("getOwnerByUsername/{username}")
-    @GET
-    @Produces("text/json")
-    public PropertyOwner getOwnerByUsername(@PathParam("username") String username) {
-        try {
-            return ownerService.searchOwnerByUsername(username);
-        } catch (Exception e) {
-            PropertyOwner owner = new PropertyOwner();
-            owner.setName(e.getMessage());
-            owner.setOwnerId(-1L);
-            return owner;
-        }
-    }
     
     @Path("getOwnerByEmail/{email}")
     @GET

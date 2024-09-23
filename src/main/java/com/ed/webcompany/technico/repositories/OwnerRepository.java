@@ -126,17 +126,4 @@ public class OwnerRepository implements Repository<PropertyOwner> {
         typedQuery.setParameter("data", vat);
         return typedQuery.getSingleResult();
     }
-
-    /**
-     * Finds a PropertyOwner by their username.
-     *
-     * @param username The username of the PropertyOwner to be retrieved.
-     * @return The PropertyOwner with the specified username.
-     */
-    @Transactional
-    public PropertyOwner findOwnerByUsername(String username) throws NotFoundException {
-        TypedQuery<PropertyOwner> typedQuery = entityManager.createQuery("SELECT p FROM PropertyOwner p WHERE p.username = :data", PropertyOwner.class);
-        typedQuery.setParameter("data", username);
-        return typedQuery.getSingleResult();
-    }
 }

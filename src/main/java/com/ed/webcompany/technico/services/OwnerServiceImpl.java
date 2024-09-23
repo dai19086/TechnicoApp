@@ -38,7 +38,7 @@ public class OwnerServiceImpl implements OwnerService {
      */
     @Override
     public PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
-            String email, String username, String password) {
+            String email, String password) {
 
         return PropertyOwner.builder()
                 .vatNumber(vatNumber)
@@ -47,7 +47,6 @@ public class OwnerServiceImpl implements OwnerService {
                 .address(address)
                 .phoneNumber(phoneNumber)
                 .email(email)
-                .username(username)
                 .password(password)
                 .build();
     }
@@ -104,21 +103,6 @@ public class OwnerServiceImpl implements OwnerService {
             throw new OwnerException("Invalid vat number");
         }
         return ownerRepository.findOwnerByVat(vatNumber);
-    }
-    
-    /**
-     * Searches for a PropertyOwner by their username.
-     *
-     * @param username The username of the PropertyOwner to be searched.
-     * @return The PropertyOwner associated with the specified username.
-     * @throws OwnerException If the username is invalid.
-     */
-    @Override
-    public PropertyOwner searchOwnerByUsername(String username) throws OwnerException{
-        if (username == null) {
-            throw new OwnerException("Invalid username");
-        }
-        return ownerRepository.findOwnerByUsername(username);
     }
 
     /**
