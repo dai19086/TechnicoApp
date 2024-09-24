@@ -11,12 +11,16 @@ import jakarta.ws.rs.core.Response;
  *
  * @author 
  */
-@Path("gen")
+@Path("general")
 public class JakartaEE10Resource {
     
     @Inject
     private ManagerService managerService;
     
+    /**
+     * Pinging method to check if the server runs properly
+     * @return 
+     */
     @GET
     @Path("ping")
     @Produces("Application/json")

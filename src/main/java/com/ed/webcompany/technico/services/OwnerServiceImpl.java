@@ -15,8 +15,6 @@ import java.util.Optional;
  * creating, retrieving, updating, and deleting PropertyOwners. This class
  * interacts with the OwnerRepository to perform the necessary database
  * operations.
- *
- * @author matina
  */
 @RequestScoped
 public class OwnerServiceImpl implements OwnerService {
@@ -25,7 +23,7 @@ public class OwnerServiceImpl implements OwnerService {
     private OwnerRepository ownerRepository;
 
     /**
-     * Creates a new PropertyOwner with the specified details.
+     * A builder that creates a new PropertyOwner with the specified details.
      *
      * @param vatNumber The VAT number of the PropertyOwner.
      * @param name The first name of the PropertyOwner.
@@ -35,6 +33,7 @@ public class OwnerServiceImpl implements OwnerService {
      * @param email The email address of the PropertyOwner.
      * @param username The username for the PropertyOwner's account.
      * @param password The password for the PropertyOwner's account.
+     * @param type The type of the user of this account.
      * @return The created PropertyOwner.
      */
     @Override

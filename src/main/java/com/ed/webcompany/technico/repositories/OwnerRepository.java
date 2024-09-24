@@ -12,13 +12,6 @@ import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * The OwnerRepository class provides CRUD operations for PropertyOwner
- * entities. This class serves as a repository layer between the service layer
- * and the database.
- *
- * @author matina
- */
 @RequestScoped
 public class OwnerRepository implements Repository<PropertyOwner> {
 

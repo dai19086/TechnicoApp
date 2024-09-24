@@ -5,14 +5,6 @@ import com.ed.webcompany.technico.exceptions.OwnerException;
 import com.ed.webcompany.technico.models.PropertyOwner;
 import java.util.List;
 
-/**
- * The OwnerService interface defines the operations available for managing
- * PropertyOwner entities. It includes methods for creating, updating,
- * retrieving, and deleting PropertyOwner data. This service layer interacts
- * with the repository layer to perform business operations.
- *
- * @author matina
- */
 public interface OwnerService {
 
     PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,

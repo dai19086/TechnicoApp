@@ -9,6 +9,8 @@ import jakarta.inject.Inject;
 import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 @RequestScoped
@@ -62,7 +64,7 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public Optional<Property> findPropertyByID(Long id) throws InvalidParameterException {
         if (id == null) {
-            System.out.println("Null property ID was given");
+            Logger.getLogger(Property.class.getName()).log(Level.SEVERE, "Null property ID was given");
             throw new InvalidParameterException();
         }
         Optional<Property> property = propertyRepository.findById(id);
@@ -72,7 +74,7 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public Optional<Property> findPropertyByE9(String e9) {
         if (e9 == null) {
-            System.out.println("Null property E9 was given");
+            Logger.getLogger(Property.class.getName()).log(Level.SEVERE, "Null property E9 was given");
             throw new InvalidParameterException();
         }
         Optional<Property> property;

@@ -22,12 +22,10 @@ public class PropertyRepairRepository implements Repository<PropertyRepair> {
     @Transactional
     public Optional<PropertyRepair> findById(Long id) {
         try {
-            entityManager.getTransaction().begin();
             PropertyRepair t = entityManager.find(getEntityClass(), id);
-            entityManager.getTransaction().commit();
             return Optional.of(t);
         } catch (Exception e) {
-            //log.debug("An exception occured");
+            Logger.getLogger(PropertyRepair.class.getName()).log(Level.SEVERE, "Unable to data due to an error", e);
         }
         return Optional.empty();
     }
