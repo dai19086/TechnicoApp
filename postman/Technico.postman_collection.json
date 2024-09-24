@@ -1,0 +1,487 @@
+{
+	"info": {
+		"_postman_id": "4c66a83d-b46e-4614-bba6-5eaef39972b1",
+		"name": "Technico",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38276795"
+	},
+	"item": [
+		{
+			"name": "Property Owner",
+			"item": [
+				{
+					"name": "Get all owners",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/getAllOwners",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"getAllOwners"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get owner by VAT",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/getOwnerByVat/0123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"getOwnerByVat",
+								"0123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get owner by email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/getOwnerByEmail/kostakispail@gmail.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"getOwnerByEmail",
+								"kostakispail@gmail.com"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"vatNumber\": \"0123456789\",\r\n    \"name\": \"Konstnantinos\",\r\n    \"surname\": \"Pailas\",\r\n    \"address\": \"Papanastasiou\",\r\n    \"phoneNumber\": \"6940755341\",\r\n    \"email\": \"kostakispail@gmail.com\",\r\n    \"password\": \"1234567890\",\r\n    \"typeOfUser\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/saveOwner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"saveOwner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update owner",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ownerId\": 1,\r\n    \"vatNumber\": \"0123456789\",\r\n    \"name\": \"Konstnantinos\",\r\n    \"surname\": \"Arvanitis\",\r\n    \"address\": \"Papanastasiou\",\r\n    \"phoneNumber\": \"6940755341\",\r\n    \"email\": \"kostakispail@gmail.com\",\r\n    \"password\": \"1234567890\",\r\n    \"typeOfUser\": \"OWNER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/saveOwner",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"saveOwner"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete owner",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/deleteOwner/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"deleteOwner",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/owner/login/kostakispail@gmail.com/1234567890",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"owner",
+								"login",
+								"kostakispail@gmail.com",
+								"1234567890"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Property Owner's CRUD methods."
+		},
+		{
+			"name": "Property",
+			"item": [
+				{
+					"name": "Get all properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/getAllProperties",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"getAllProperties"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get property by E9",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/getPropertyByE9/1234",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"getPropertyByE9",
+								"1234"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"e9\": \"1234\",\r\n    \"address\": \"Papanastasiou\",\r\n    \"yearOfConstruction\": 2007,\r\n    \"typeOfProperty\": \"MAISONETTE\",\r\n    \"propertyOwner\": {\r\n        \"ownerId\": 1,\r\n        \"vatNumber\": \"0123456789\",\r\n        \"name\": \"Konstnantinos\",\r\n        \"surname\": \"Pailas\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"phoneNumber\": \"6940755341\",\r\n        \"email\": \"kostakispail@gmail.com\",\r\n        \"password\": \"1234567890\",\r\n        \"typeOfUser\": \"OWNER\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/saveProperty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"saveProperty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update property",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"propertyId\": 1,\r\n    \"e9\": \"1234\",\r\n    \"address\": \"Papanastasiou\",\r\n    \"yearOfConstruction\": 2009,\r\n    \"typeOfProperty\": \"MAISONETTE\",\r\n    \"propertyOwner\": {\r\n        \"ownerId\": 1,\r\n        \"vatNumber\": \"0123456789\",\r\n        \"name\": \"Konstnantinos\",\r\n        \"surname\": \"Pailas\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"phoneNumber\": \"6940755341\",\r\n        \"email\": \"kostakispail@gmail.com\",\r\n        \"password\": \"1234567890\",\r\n        \"typeOfUser\": \"OWNER\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/saveProperty",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"saveProperty"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete property",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/deleteProperty/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"deleteProperty",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Property's CRUD methods."
+		},
+		{
+			"name": "Property Repair",
+			"item": [
+				{
+					"name": "Get all repairs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/getAllRepairs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"getAllRepairs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get all owner's repairs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/getAllRepairs/0123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"getAllRepairs",
+								"0123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add new repair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"property\": {\r\n        \"propertyId\": 1,\r\n        \"e9\": \"1234\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"yearOfConstruction\": 2007,\r\n        \"typeOfProperty\": \"MAISONETTE\",\r\n        \"propertyOwner\": {\r\n            \"ownerId\": 1,\r\n            \"vatNumber\": \"0123456789\",\r\n            \"name\": \"Konstnantinos\",\r\n            \"surname\": \"Pailas\",\r\n            \"address\": \"Papanastasiou\",\r\n            \"phoneNumber\": \"6940755341\",\r\n            \"email\": \"kostakispail@gmail.com\",\r\n            \"password\": \"1234567890\",\r\n            \"typeOfUser\": \"OWNER\"\r\n        }\r\n    },\r\n    \"typeOfRepair\": \"PAINTING\",\r\n    \"shortDescription\": \"A small paint job.\",\r\n    \"workDescription\": \"Painting the walls to look more beautiful.\",\r\n    \"submissionDate\": \"today\",\r\n    \"proposedStartDate\": \"tomorrow\",\r\n    \"proposedEndDate\": \"2024-10-04\",\r\n    \"proposedCost\": 200.0,\r\n    \"ownerAcceptance\": false,\r\n    \"status\": \"PENDING\",\r\n    \"actualStartDate\": null,\r\n    \"actualEndDate\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/saveRepair",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"saveRepair"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update repair",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"repairId\": 1,\r\n    \"property\": {\r\n        \"propertyId\": 1,\r\n        \"e9\": \"1234\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"yearOfConstruction\": 2007,\r\n        \"typeOfProperty\": \"MAISONETTE\",\r\n        \"propertyOwner\": {\r\n            \"ownerId\": 1,\r\n            \"vatNumber\": \"0123456789\",\r\n            \"name\": \"Konstnantinos\",\r\n            \"surname\": \"Pailas\",\r\n            \"address\": \"Papanastasiou\",\r\n            \"phoneNumber\": \"6940755341\",\r\n            \"email\": \"kostakispail@gmail.com\",\r\n            \"password\": \"1234567890\",\r\n            \"typeOfUser\": \"OWNER\"\r\n        }\r\n    },\r\n    \"typeOfRepair\": \"PAINTING\",\r\n    \"shortDescription\": \"A small paint job.\",\r\n    \"workDescription\": \"Painting the walls to look more beautiful.\",\r\n    \"submissionDate\": \"yesterday\",\r\n    \"proposedStartDate\": \"tomorrow\",\r\n    \"proposedEndDate\": \"2024-10-04\",\r\n    \"proposedCost\": 250.0,\r\n    \"ownerAcceptance\": false,\r\n    \"status\": \"PENDING\",\r\n    \"actualStartDate\": null,\r\n    \"actualEndDate\": null\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/saveRepair",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"saveRepair"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete repair",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/deleteRepair/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"deleteRepair",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Property Repair's CRUD methods."
+		},
+		{
+			"name": "Ping",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/Technico/resources/general/ping",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"Technico",
+						"resources",
+						"general",
+						"ping"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
