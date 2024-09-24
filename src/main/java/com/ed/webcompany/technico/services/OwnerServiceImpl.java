@@ -1,5 +1,6 @@
 package com.ed.webcompany.technico.services;
 
+import com.ed.webcompany.technico.enumerations.UserType;
 import com.ed.webcompany.technico.exceptions.OwnerException;
 import com.ed.webcompany.technico.models.PropertyOwner;
 import com.ed.webcompany.technico.repositories.OwnerRepository;
@@ -38,7 +39,7 @@ public class OwnerServiceImpl implements OwnerService {
      */
     @Override
     public PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
-            String email, String password) {
+            String email, String password, UserType type) {
 
         return PropertyOwner.builder()
                 .vatNumber(vatNumber)
@@ -48,6 +49,7 @@ public class OwnerServiceImpl implements OwnerService {
                 .phoneNumber(phoneNumber)
                 .email(email)
                 .password(password)
+                .typeOfUser(type)
                 .build();
     }
 
@@ -61,6 +63,42 @@ public class OwnerServiceImpl implements OwnerService {
     public Long saveOwner(PropertyOwner propertyOwner) {
 
         return ownerRepository.save(propertyOwner);
+    }
+
+    /**
+     * Retrives the user with the given email and checks if the given password
+     * matches with the saved password. If it does return the PropertyOwner to
+     * log in. If not returns a PropertyOwner with an id of -1, that signal an
+     * unsuccessful log in, and a name that explains the reason for the
+     * unsuccessful log in
+     *
+     * @param email
+     * @param password
+     * @return PropertyOwner object with the result of the log in process
+     */
+    @Override
+    public PropertyOwner login(String email, String password) {
+        String errorMessage = "Everything was executed correctly";
+        if (email == null || !email.contains("@")) {
+            errorMessage = "Invalid email";
+        }
+        if (password == null) {
+            errorMessage = "Please enter the password to log in...";
+        }
+        PropertyOwner userToSignIn;
+        try {
+            userToSignIn = ownerRepository.findOwnerByEmail(email);
+            if (password.equals(userToSignIn.getPassword())) {
+                return userToSignIn;
+            } else {
+                errorMessage = "Wrong password please try again....";
+            }
+        } catch (Exception e) {
+            errorMessage = "User not found.....";
+        }
+        userToSignIn = createOwner(null, errorMessage, null, null, null, null, null, UserType.OWNER);
+        userToSignIn.setOwnerId(-1L);
+        return userToSignIn;
     }
 
     /**
@@ -82,7 +120,7 @@ public class OwnerServiceImpl implements OwnerService {
      * that email.
      */
     @Override
-    public PropertyOwner searchOwnerByEmail(String email) throws OwnerException{
+    public PropertyOwner searchOwnerByEmail(String email) throws OwnerException {
         if (email == null || !email.contains("@")) {
             throw new OwnerException("Invalid email");
         }
@@ -98,7 +136,7 @@ public class OwnerServiceImpl implements OwnerService {
      * with that VAT number.
      */
     @Override
-    public PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException{
+    public PropertyOwner searchOwnerByVat(String vatNumber) throws OwnerException {
         if (vatNumber == null) {
             throw new OwnerException("Invalid vat number");
         }
@@ -115,7 +153,7 @@ public class OwnerServiceImpl implements OwnerService {
      * @throws NumberFormatException If the ID cannot be parsed to a Long.
      */
     @Override
-    public PropertyOwner searchOwnerById(String id) throws OwnerException{
+    public PropertyOwner searchOwnerById(String id) throws OwnerException {
         if (id == null) {
             throw new OwnerException("Invalid id");
         }
@@ -165,7 +203,6 @@ public class OwnerServiceImpl implements OwnerService {
 //            throw new OwnerException("Owner not found");
 //        }
 //    }
-
 //    /**
 //     * Updates the email address of an existing PropertyOwner.
 //     *
@@ -188,7 +225,6 @@ public class OwnerServiceImpl implements OwnerService {
 //            throw new OwnerException("Owner not found");
 //        }
 //    }
-
 //    /**
 //     * Updates the password of an existing PropertyOwner.
 //     *

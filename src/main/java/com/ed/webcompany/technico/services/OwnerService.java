@@ -1,5 +1,6 @@
 package com.ed.webcompany.technico.services;
 
+import com.ed.webcompany.technico.enumerations.UserType;
 import com.ed.webcompany.technico.exceptions.OwnerException;
 import com.ed.webcompany.technico.models.PropertyOwner;
 import java.util.List;
@@ -15,9 +16,11 @@ import java.util.List;
 public interface OwnerService {
 
     PropertyOwner createOwner(String vatNumber, String name, String surname, String address, String phoneNumber,
-            String email, String password);
+            String email, String password, UserType type);
 
     Long saveOwner(PropertyOwner propertyowner);
+
+    PropertyOwner login(String email, String password);
 
     PropertyOwner searchOwnerByEmail(String email) throws OwnerException;
 

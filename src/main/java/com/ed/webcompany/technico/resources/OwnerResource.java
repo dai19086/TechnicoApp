@@ -61,6 +61,14 @@ public class OwnerResource {
             return owner;
         }
     }
+    
+    @Path("login/{email}/{password}")
+    @GET
+    @Produces("text/json")
+    public PropertyOwner login(@PathParam("email") String email,
+                                @PathParam("password") String password) {
+        return ownerService.login(email,password);
+    }
 
     @Path("saveOwner")
     @POST

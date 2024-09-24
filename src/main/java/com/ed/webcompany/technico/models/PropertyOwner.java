@@ -1,9 +1,12 @@
 package com.ed.webcompany.technico.models;
 
+import com.ed.webcompany.technico.enumerations.UserType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -39,6 +42,8 @@ public class PropertyOwner {
     @Column(unique = true)
     private String email;
     private String password;
+    @Enumerated(EnumType.STRING)
+    private UserType typeOfUser;
 
     /**
      * A list of properties owned by the PropertyOwner. This is a one-to-many
