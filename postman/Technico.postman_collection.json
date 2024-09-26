@@ -165,10 +165,19 @@
 				{
 					"name": "Login",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"kostakispail@gmail.com\",\r\n    \"password\": \"1234567890\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/Technico/resources/owner/login/kostakispail@gmail.com/1234567890",
+							"raw": "http://localhost:8080/Technico/resources/owner/login",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -178,9 +187,7 @@
 								"Technico",
 								"resources",
 								"owner",
-								"login",
-								"kostakispail@gmail.com",
-								"1234567890"
+								"login"
 							]
 						}
 					},

@@ -76,17 +76,16 @@ public class OwnerResource {
     }
 
     /**
-     * Path: Technico/resources/owner/login/{the email of the user to log in}/{the password of the user to log in}
-     * @param email
-     * @param password
+     * Path: Technico/resources/owner/login}
+     * Requires as body: a json file with the user's email and password.
      * @return A PropertyOwner with the logged in user or with (id:-1) and (name:{Error message}) if the log in process wasn't completed successfully
      */
-    @Path("login/{email}/{password}")
-    @GET
-    @Produces("text/json")
-    public PropertyOwner login(@PathParam("email") String email,
-            @PathParam("password") String password) {
-        return ownerService.login(email, password);
+    @Path("login")
+    @POST
+    @Consumes("application/json")
+    @Produces("application/json")
+    public PropertyOwner login(PropertyOwner owner) {
+        return ownerService.login(owner.getEmail(), owner.getPassword());
     }
 
     /**
