@@ -47,6 +47,19 @@ public class RepairResource {
     }
     
     /**
+     * Path: Technico/resources/repair/getAllUnansweredRepairs/{the VAT number
+     * of the owner whose unanswered repairs we want to get}
+     * @param ownerVAT
+     * @return A List<PropertyRepair> with the owner's unanswered repairs list.
+     */
+    @Path("getAllUnansweredRepairs/{ownerVAT}")
+    @GET
+    @Produces("text/json")
+    public List<PropertyRepair> getUnansweredProperties(@PathParam("ownerVAT") String ownerVAT) {
+        return repairService.getUnansweredOwnerRepairs(ownerVAT);
+    }
+    
+    /**
      * Path: Technico/resources/repair/saveRepair
      * Requires as  body: a compatible json file with the repair to save
      * If it is a new repair to save DO NOT include the id
