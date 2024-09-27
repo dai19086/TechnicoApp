@@ -34,6 +34,18 @@ public class PropertyResource {
     public List<Property> getProperties() {
         return propertyService.getAllProperties();
     }
+    
+    /**
+     * Path: Technico/resources/property/getAllProperties/{the VAT number of the owner whose properties we want to get}
+     * @param ownerVAT
+     * @return A List<Property> with the owner's whole properties list.
+     */
+    @Path("getAllProperties/{ownerVAT}")
+    @GET
+    @Produces("text/json")
+    public List<Property> getProperties(@PathParam("ownerVAT") String ownerVAT) {
+        return propertyService.getOwnerProperties(ownerVAT);
+    }
 
     /**
      * Path: Technico/resources/property/getPropertyByE9/{the E9 number of the property to find}

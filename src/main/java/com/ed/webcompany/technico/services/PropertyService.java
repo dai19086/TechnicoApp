@@ -33,6 +33,12 @@ public interface PropertyService {
     List<Property> getAllProperties();
 
     /**
+     * The method getOwnerProperties returns all the properties in the
+     * application that corespond to the specified owner's vat
+     */
+    public List<Property> getOwnerProperties(String ownerVAT);
+
+    /**
      * The method findPropertiesByVAT gets a Property owner's VAT and returns
      * all the properties that the owner has
      */

@@ -47,6 +47,13 @@ public class PropertyServiceImpl implements PropertyService {
     public List<Property> getAllProperties() {
         return propertyRepository.findAll();
     }
+    
+    @Override
+    public List<Property> getOwnerProperties(String ownerVAT) {
+        return getAllProperties().stream()
+                .filter(property -> property.getPropertyOwner().getVatNumber().equals(ownerVAT))
+                .collect(Collectors.toList());
+    }
 
     @Override
     public List<Property> findPropertiesByVAT(String ownerVat) {
