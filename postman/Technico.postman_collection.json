@@ -222,6 +222,29 @@
 					"response": []
 				},
 				{
+					"name": "Get all owner's properties",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/property/getAllProperties/0123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"property",
+								"getAllProperties",
+								"0123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get property by E9",
 					"request": {
 						"method": "GET",
@@ -381,6 +404,29 @@
 					"response": []
 				},
 				{
+					"name": "Get all owner's unanswered repairs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/Technico/resources/repair/getAllUnansweredRepairs/0123456789",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"Technico",
+								"resources",
+								"repair",
+								"getAllUnansweredRepairs",
+								"0123456789"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Add new repair",
 					"request": {
 						"method": "POST",
@@ -418,7 +464,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"repairId\": 1,\r\n    \"property\": {\r\n        \"propertyId\": 1,\r\n        \"e9\": \"1234\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"yearOfConstruction\": 2007,\r\n        \"typeOfProperty\": \"MAISONETTE\",\r\n        \"propertyOwner\": {\r\n            \"ownerId\": 1,\r\n            \"vatNumber\": \"0123456789\",\r\n            \"name\": \"Konstnantinos\",\r\n            \"surname\": \"Pailas\",\r\n            \"address\": \"Papanastasiou\",\r\n            \"phoneNumber\": \"6940755341\",\r\n            \"email\": \"kostakispail@gmail.com\",\r\n            \"password\": \"1234567890\",\r\n            \"typeOfUser\": \"OWNER\"\r\n        }\r\n    },\r\n    \"typeOfRepair\": \"PAINTING\",\r\n    \"shortDescription\": \"A small paint job.\",\r\n    \"workDescription\": \"Painting the walls to look more beautiful.\",\r\n    \"submissionDate\": \"yesterday\",\r\n    \"proposedStartDate\": \"tomorrow\",\r\n    \"proposedEndDate\": \"2024-10-04\",\r\n    \"proposedCost\": 250.0,\r\n    \"ownerAcceptance\": false,\r\n    \"status\": \"PENDING\",\r\n    \"actualStartDate\": null,\r\n    \"actualEndDate\": null\r\n}",
+							"raw": "{\r\n    \"repairId\": 1,\r\n    \"property\": {\r\n        \"propertyId\": 1,\r\n        \"e9\": \"1234\",\r\n        \"address\": \"Papanastasiou\",\r\n        \"yearOfConstruction\": 2007,\r\n        \"typeOfProperty\": \"MAISONETTE\",\r\n        \"propertyOwner\": {\r\n            \"ownerId\": 1,\r\n            \"vatNumber\": \"0123456789\",\r\n            \"name\": \"Konstnantinos\",\r\n            \"surname\": \"Pailas\",\r\n            \"address\": \"Papanastasiou\",\r\n            \"phoneNumber\": \"6940755341\",\r\n            \"email\": \"kostakispail@gmail.com\",\r\n            \"password\": \"1234567890\",\r\n            \"typeOfUser\": \"OWNER\"\r\n        }\r\n    },\r\n    \"typeOfRepair\": \"PAINTING\",\r\n    \"shortDescription\": \"A small paint job.\",\r\n    \"workDescription\": \"Painting the walls to look more beautiful.\",\r\n    \"submissionDate\": \"yesterday\",\r\n    \"proposedStartDate\": \"tomorrow\",\r\n    \"proposedEndDate\": \"2024-10-04\",\r\n    \"proposedCost\": 250.0,\r\n    \"ownerAcceptance\": true,\r\n    \"status\": \"PENDING\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
